@@ -1,4 +1,16 @@
 {
+    "require": {
+        "silex/silex": "~2.0",
+        "twig/twig": "^1.26",
+        "nesbot/carbon": "^1.21",
+        "symfony/form": "^2.8",
+        "symfony/security-core": "^2.8",
+        "symfony/security-csrf": "^2.8",
+        "symfony/twig-bridge": "^2.8",
+        "symfony/translation": "^2.8",
+        "symfony/validator": "^2.8",
+        "symfony/config": "^2.8"
+    },
     "require-dev": {
         "behat/behat": "^3.2",
         "behat/mink": "^1.7",
@@ -11,10 +23,12 @@
         "sebastian/phpcpd": "*",
         "squizlabs/php_codesniffer": "*"
     },
-    "autoload": {"psr-0": {"": "src/"}},
-    "require": {
-        "silex/silex": "~2.0",
-        "twig/twig": "^1.26",
-        "nesbot/carbon": "^1.21"
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
     }
 }

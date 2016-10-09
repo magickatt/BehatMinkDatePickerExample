@@ -2,22 +2,29 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-use Silex\Application;
-use Silex\Provider\TwigServiceProvider;
+use Form\DatePickerFormBuilder;
+use Application\ApplicationBuilder;
+use Symfony\Component\HttpFoundation\Request;
 
-$application = new Application();
-$application['debug'] = true;
+$application = (new ApplicationBuilder)->buildApplication();
 
-$application->register(new TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../views',
-));
+$application->get('/', function () use ($application) {
 
-$twig = $application['twig'];
+    $form = (new DatePickerFormBuilder($application['form.factory']))->buildForm();
+    return $application['twig']->render('datepicker.twig', array('form' => $form->createView()));
 
-$application->get('/', function () use ($twig) {
-    return $twig->render('datepicker.twig', array(
-        'name' => 'World!',
-    ));
+});
+
+$application->post('/', function (Request $request) use ($application) {
+
+    $form = (new DatePickerFormBuilder($application['form.factory']))->buildForm();
+    $form->handleRequest($request);
+
+    if ($form->isValid()) {
+        $data = $form->getData();
+        return $application->redirect('/');
+    }
+
 });
 
 $application->run();
