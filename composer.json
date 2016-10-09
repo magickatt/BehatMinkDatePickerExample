@@ -12,6 +12,7 @@
     },
     "autoload": {"psr-0": {"": "src/"}},
     "require": {
-        "silex/silex": "~2.0"
+        "silex/silex": "~2.0",
+        "twig/twig": "^1.26"
     }
 }
