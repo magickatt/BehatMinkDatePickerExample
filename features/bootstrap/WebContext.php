@@ -23,10 +23,26 @@ class WebContext extends MinkContext
     }
 
     /**
-     * @Then I should see the text :text
+     * @Given I specify that my date of birth is the :day of :month :year
      */
-    public function iShouldSeeTheText($text)
+    public function iSpecifyThatMyDateOfBirthIsTheOf($day, $month, $year)
     {
-        $this->assertPageContainsText($text);
+        throw new PendingException();
+    }
+
+    /**
+     * @When I ask for my age in number of hours to be calculated
+     */
+    public function iAskForMyAgeInNumberOfHoursToBeCalculated()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then I should be told how many hours old I am
+     */
+    public function iShouldBeToldHowManyHoursOldIAm()
+    {
+        throw new PendingException();
     }
 }
