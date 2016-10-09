@@ -20,6 +20,8 @@ class WebContext extends MinkContext
     /** @var CarbonDate */
     private $date;
 
+    private $formPrefix = 'form_birthdate_';
+
     /**
      * Initializes context.
      *
@@ -49,6 +51,10 @@ class WebContext extends MinkContext
             $date = new CarbonDate($day.' '.$month.' '.$year);
             $this->date = $date;
         } catch (Exception $exception) {}
+
+        $this->selectOption($this->formPrefix.'year', $year);
+        $this->selectOption($this->formPrefix.'month', $month);
+        $this->selectOption($this->formPrefix.'day', $day);
     }
 
     /**
@@ -56,7 +62,7 @@ class WebContext extends MinkContext
      */
     public function iAskForMyAgeInNumberOfHoursToBeCalculated()
     {
-        throw new PendingException();
+        $this->pressButton('submit');
     }
 
     /**

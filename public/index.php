@@ -28,6 +28,7 @@ $application->post('/', function (Request $request) use ($application) {
         $application['session']->set('person', $person);
         return $application->redirect('/age');
     }
+    return $application['twig']->render('datepicker.twig', array('form' => $form->createView()));
 
 });
 
