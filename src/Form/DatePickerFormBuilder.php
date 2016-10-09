@@ -2,6 +2,7 @@
 
 namespace Form;
 
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormFactory;
 
 class DatePickerFormBuilder
@@ -17,7 +18,7 @@ class DatePickerFormBuilder
     {
         $form = $this->factory->createBuilder('form', [])
                               ->add('name')
-                              ->add('birthdate')
+                              ->add('birthdate', DateType::class)
                               ->getForm();
         return $form;
     }
