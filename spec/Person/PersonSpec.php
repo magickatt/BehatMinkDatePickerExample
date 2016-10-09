@@ -1,6 +1,6 @@
 <?php
 
-namespace spec;
+namespace spec\Person;
 
 use Carbon\Carbon;
 use PhpSpec\ObjectBehavior;

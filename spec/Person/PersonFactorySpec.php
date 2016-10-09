@@ -1,21 +1,16 @@
 <?php
 
-namespace spec;
+namespace spec\Person;
 
 use Carbon\Carbon;
 use DateTime;
-use Person;
+use Person\Person;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\Form\Form;
 
 class PersonFactorySpec extends ObjectBehavior
 {
-    function it_is_initializable()
-    {
-        $this->shouldHaveType('PersonFactory');
-    }
-
     function it_should_create_a_person_from_form_data(Form $form)
     {
         $name = 'Ryu';
@@ -26,7 +21,7 @@ class PersonFactorySpec extends ObjectBehavior
             'birthdate' => $birthday
         ]);
 
-        $this->createPersonWithForm($form)->shouldBeLikeThisPerson(new \Person(new Carbon(), 'Ryu'));
+        $this->createPersonWithForm($form)->shouldBeLikeThisPerson(new Person(new Carbon(), 'Ryu'));
     }
 
     public function getMatchers()

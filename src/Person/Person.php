@@ -1,5 +1,7 @@
 <?php
 
+namespace Person;
+
 use Carbon\Carbon;
 
 class Person
