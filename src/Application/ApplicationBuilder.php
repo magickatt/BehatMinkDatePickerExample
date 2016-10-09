@@ -11,6 +11,9 @@ use Silex\Provider\SessionServiceProvider;
 
 class ApplicationBuilder
 {
+    /**
+     * @return Application
+     */
     public function buildApplication()
     {
         $application = new Application();

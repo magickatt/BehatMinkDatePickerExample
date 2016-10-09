@@ -7,6 +7,11 @@ use Person\Person;
 
 class AgeCalculator
 {
+    /**
+     * @param Person $person
+     * @param Carbon $now
+     * @return Age
+     */
     public function calculateAgeFromPerson(Person $person, Carbon $now)
     {
         $birthdate = $person->getBirthdate();

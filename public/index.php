@@ -3,6 +3,7 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 use Carbon\Carbon;
+use Age\AgeCalculator;
 use Person\PersonFactory;
 use Form\DatePickerFormBuilder;
 use Application\ApplicationBuilder;
@@ -41,12 +42,9 @@ $application->get('/age', function () use ($application) {
     if (!$person) {
         return $application->redirect('/');
     }
+    $application['session']->clear();
 
-    //$application['session']->clear();
-
-    $calculator = new \Age\AgeCalculator();
-    $age = $calculator->calculateAgeFromPerson($person, Carbon::now());
-
+    $age = (new AgeCalculator())->calculateAgeFromPerson($person, Carbon::now());
     return $application['twig']->render('age.twig', array('person' => $person, 'age' => $age));
 
 });

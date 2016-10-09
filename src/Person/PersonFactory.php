@@ -9,6 +9,10 @@ use Symfony\Component\Form\Form;
 
 class PersonFactory
 {
+    /**
+     * @param Form $form
+     * @return Person
+     */
     public function createPersonWithForm(Form $form)
     {
         $data = $form->getData();
