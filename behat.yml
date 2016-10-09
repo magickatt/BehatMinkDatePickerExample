@@ -1,0 +1,13 @@
+default:
+
+  suites:
+    default:
+      contexts: [WebContext]
+
+  extensions:
+
+    Behat\MinkExtension:
+      base_url: http://localhost:9999
+      sessions:
+        default:
+          goutte: ~
