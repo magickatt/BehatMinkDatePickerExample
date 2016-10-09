@@ -10,5 +10,8 @@
         "sebastian/phpcpd": "*",
         "squizlabs/php_codesniffer": "*"
     },
-    "autoload": {"psr-0": {"": "src/"}}
+    "autoload": {"psr-0": {"": "src/"}},
+    "require": {
+        "silex/silex": "~2.0"
+    }
 }
