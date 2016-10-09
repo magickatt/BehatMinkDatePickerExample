@@ -20,7 +20,7 @@ class WebContext extends MinkContext
     /** @var CarbonDate */
     private $date;
 
-    private $formPrefix = 'form_birthdate_';
+    private $formPrefix = 'form_';
 
     /**
      * Initializes context.
@@ -40,6 +40,8 @@ class WebContext extends MinkContext
     {
         Assert::assertNotEmpty($name);
         $this->name = (string)$name;
+
+        $this->fillField($this->formPrefix.'name', $name);
     }
 
     /**
@@ -48,13 +50,12 @@ class WebContext extends MinkContext
     public function iSpecifyThatMyDateOfBirthIsTheOf($day, $month, $year)
     {
         try {
-            $date = new CarbonDate($day.' '.$month.' '.$year);
-            $this->date = $date;
+            $this->date = new CarbonDate($day.' '.$month.' '.$year);
         } catch (Exception $exception) {}
 
-        $this->selectOption($this->formPrefix.'year', $year);
-        $this->selectOption($this->formPrefix.'month', $month);
-        $this->selectOption($this->formPrefix.'day', $day);
+        $this->selectOption($this->formPrefix.'birthdate_year', $year);
+        $this->selectOption($this->formPrefix.'birthdate_month', $month);
+        $this->selectOption($this->formPrefix.'birthdate_day', $day);
     }
 
     /**
@@ -70,6 +71,17 @@ class WebContext extends MinkContext
      */
     public function iShouldBeToldHowOldIAm()
     {
-        throw new PendingException();
+        $now = CarbonDate::now();
+        $years = $this->date->diffInYears($now);
+
+        $then = $now->subYears($years);
+        $days = $this->date->diffInDays($then);
+
+        $then = $then->subDays($days);
+        $hours = $this->date->diffInHours($then);
+
+        $this->assertPageContainsText($years.' years');
+        $this->assertPageContainsText($days.' days');
+        $this->assertPageContainsText($hours.' hours');
     }
 }

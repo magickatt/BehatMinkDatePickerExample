@@ -4,22 +4,17 @@ namespace Age;
 
 class Age
 {
-    private $hoursInTotal;
-
-    private $hours;
+    private $years;
 
     private $days;
 
-    private $years;
+    private $hours;
 
-    public function __construct($hoursInTotal)
+    public function __construct($years, $days, $hours)
     {
-        $this->calculateHoursMinutesAndDays($hoursInTotal);
-    }
-
-    public function getHoursInTotal()
-    {
-        return $this->hoursInTotal;
+        $this->years = (int)$years;
+        $this->days = (int)$days;
+        $this->hours = (int)$hours;
     }
 
     public function getYears()
@@ -27,9 +22,13 @@ class Age
         return $this->years;
     }
 
-    private function calculateHoursMinutesAndDays($hoursInTotal)
+    public function getDays()
     {
-        $this->hoursInTotal = $hoursInTotal;
-        $this->years = (int)floor($this->hoursInTotal / 8760);
+        return $this->days;
+    }
+
+    public function getHours()
+    {
+        return $this->hours;
     }
 }

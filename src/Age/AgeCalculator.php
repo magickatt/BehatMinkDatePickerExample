@@ -7,9 +7,18 @@ use Person\Person;
 
 class AgeCalculator
 {
-    public function calculateAgeFromPerson(Person $person)
+    public function calculateAgeFromPerson(Person $person, Carbon $now)
     {
-        $hoursInTotal = $person->getBirthdate()->diffInHours(Carbon::now());
-        return new Age($hoursInTotal);
+        $birthdate = $person->getBirthdate();
+
+        $years = $birthdate->diffInYears($now);
+
+        $then = $now->subYears($years);
+        $days = $birthdate->diffInDays($then);
+
+        $then = $then->subDays($days);
+        $hours = $birthdate->diffInHours($then);
+
+        return new Age($years, $days, $hours);
     }
 }

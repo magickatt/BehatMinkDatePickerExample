@@ -17,11 +17,11 @@ class AgeCalculatorSpec extends ObjectBehavior
 
     function it_should_calculate_an_age_based_on_a_persons_birthdate(Person $person)
     {
-        $birthdate = new Carbon('21 Jul 1964');
+        $now = new Carbon('9 Oct 2016 19:10:00');
+        $birthdate = new Carbon('21 Jul 1964 00:00:00');
         $person->getBirthdate()->willReturn($birthdate);
-        $hoursInTotal = $birthdate->diffInHours(Carbon::now());
 
-        $this->calculateAgeFromPerson($person)->shouldBeLikeThisAge(new Age($hoursInTotal));
+        $this->calculateAgeFromPerson($person, $now)->shouldBeLikeThisAge(new Age(52, 80, 19));
     }
 
     public function getMatchers()
@@ -31,7 +31,7 @@ class AgeCalculatorSpec extends ObjectBehavior
                 if (!$actual instanceof Age) {
                     return false;
                 }
-                if ($actual->getHoursInTotal() == $expected->getHoursInTotal()) {
+                if ($actual->getYears() == $expected->getYears()) {
                     return true;
                 }
                 return false;
