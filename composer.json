@@ -4,7 +4,11 @@
         "behat/mink": "^1.7",
         "behat/mink-extension": "^2.2",
         "behat/mink-goutte-driver": "^1.2",
-        "phpspec/phpspec": "^2.5"
+        "phpspec/phpspec": "^2.5",
+        "phploc/phploc": "*",
+        "phpmd/phpmd" : "*",
+        "sebastian/phpcpd": "*",
+        "squizlabs/php_codesniffer": "*"
     },
     "autoload": {"psr-0": {"": "src/"}}
 }
