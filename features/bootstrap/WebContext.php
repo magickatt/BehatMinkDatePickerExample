@@ -1,16 +1,25 @@
 <?php
 
+use Exception;
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
+use PHPUnit_Framework_Assert as Assert;
+use Carbon\Carbon as CarbonDate;
 
 /**
  * Defines application features from the specific context.
  */
 class WebContext extends MinkContext
 {
+    /** @var string */
+    private $name;
+
+    /** @var CarbonDate */
+    private $date;
+
     /**
      * Initializes context.
      *
@@ -23,11 +32,23 @@ class WebContext extends MinkContext
     }
 
     /**
+     * @Given I specify that my name is :name
+     */
+    public function iSpecifyThatMyNameIs($name)
+    {
+        Assert::assertNotEmpty($name);
+        $this->name = (string)$name;
+    }
+
+    /**
      * @Given I specify that my date of birth is the :day of :month :year
      */
     public function iSpecifyThatMyDateOfBirthIsTheOf($day, $month, $year)
     {
-        throw new PendingException();
+        try {
+            $date = new CarbonDate($day.' '.$month.' '.$year);
+            $this->date = $date;
+        } catch (Exception $exception) {}
     }
 
     /**
@@ -39,9 +60,9 @@ class WebContext extends MinkContext
     }
 
     /**
-     * @Then I should be told how many hours old I am
+     * @Then I should be told how old I am
      */
-    public function iShouldBeToldHowManyHoursOldIAm()
+    public function iShouldBeToldHowOldIAm()
     {
         throw new PendingException();
     }
